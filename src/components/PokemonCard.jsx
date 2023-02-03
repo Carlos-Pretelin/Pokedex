@@ -13,6 +13,7 @@ const PokemonCard = ({name, sprite})=> {
         >
             <Meta description="Fire, Magic" />
         </Card>
+
     )
 }
 
