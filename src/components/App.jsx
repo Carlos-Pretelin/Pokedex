@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Col } from "antd";
 import { connect, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Searcher from './Searcher'
-import PokemonCard from './PokemonCard';
 import PokemonList from './PokemonList';
-import { getPokemon, getPokemonDetails } from '../api';
-import { setPokemon } from "../actions"
+import { getPokemon } from '../api';
+import { getPokemonWithDetails } from "../actions"
 
 //css
 import "../styles/App.scss"
@@ -21,10 +20,9 @@ const App = () => {
   useEffect( ()=>{
     const fetchPokemon = async () => {
       const pokemonRes = await getPokemon();
-      const pokemonDetails = await Promise.all(pokemonRes.map( pokemon => 
-        getPokemonDetails(pokemon)))
+      
         
-      dispatch(setPokemon(pokemonDetails))
+      dispatch(getPokemonWithDetails(pokemonRes))
     } 
     fetchPokemon();
   }, [])
