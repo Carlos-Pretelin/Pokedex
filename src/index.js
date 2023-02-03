@@ -15,7 +15,9 @@ const root = createRoot(rootElement);
           
 const composedEnhancers = compose(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(logger, featuring)
+    //This enables the other middleware "featuring" that i created. it adds an extra pokemon to the list called Antonio
+    //applyMiddleware(logger, featuring)
+    applyMiddleware(logger)
     )
 const store = createStore(pokemonReducer, composedEnhancers);
 root.render(

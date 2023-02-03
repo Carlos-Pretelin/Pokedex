@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Searcher from './Searcher'
 import PokemonCard from './PokemonCard';
 import PokemonList from './PokemonList';
-import getPokemon from '../api';
+import { getPokemon, getPokemonDetails } from '../api';
 import { setPokemon } from "../actions"
 
 //css
@@ -21,7 +21,10 @@ const App = () => {
   useEffect( ()=>{
     const fetchPokemon = async () => {
       const pokemonRes = await getPokemon();
-      dispatch(setPokemon(pokemonRes))
+      const pokemonDetails = await Promise.all(pokemonRes.map( pokemon => 
+        getPokemonDetails(pokemon)))
+        
+      dispatch(setPokemon(pokemonDetails))
     } 
     fetchPokemon();
   }, [])
