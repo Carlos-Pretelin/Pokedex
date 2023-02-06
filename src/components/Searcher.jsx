@@ -1,9 +1,14 @@
 import React from 'react'
 import { Input } from "antd";
+//scss
+import "../styles/Searcher.scss"
 
 const Searcher = () => {
   return (
-    <Input.Search placeholder='Search ...' />
+    <div className='Searcher'>
+      <Input.Search placeholder='Search ...' />
+    </div>
+    
   )
 }
 
