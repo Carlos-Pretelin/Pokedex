@@ -7,15 +7,16 @@ import PokemonList from './PokemonList';
 import { getPokemon } from '../api';
 import { getPokemonWithDetails, setLoading } from "../actions"
 
+import logo from "../static/logo.svg"
 //css
 import "../styles/App.scss"
-import logo from "../static/logo.svg"
+
 
 
 
 const App = () => {
-  const pokemon = useSelector(state => state.pokemon);
-  const loading = useSelector( (state) => state.loading )
+  const pokemon = useSelector(state => state.get('pokemon')).toJS();
+  const loading = useSelector( (state) => state.get('loading'));
   const dispatch = useDispatch();
 
   useEffect( ()=>{
