@@ -1,14 +1,14 @@
 import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./components/App.jsx"
-import { pokemonReducer } from "./reducers/pokemon.js";
+import App from "./components/App.js"
 import thunk from "redux-thunk"
 import { Provider } from "react-redux";
 import { applyMiddleware,
         compose,
         legacy_createStore as createStore } from "redux";
 import {logger}  from  "./middlewares/index";
+import rootReducer from "./reducers/rootReducer.js";
 //import {featuring} from "./middlewares/index"
           
 const rootElement = document.getElementById('app');
@@ -21,7 +21,7 @@ const composedEnhancers = composeAlt(
     //applyMiddleware(logger, featuring)
     applyMiddleware(thunk, logger)
     )
-const store = createStore(pokemonReducer, composedEnhancers);
+const store = createStore(rootReducer, composedEnhancers);
 root.render(
     <StrictMode>
         <Provider store={store}>

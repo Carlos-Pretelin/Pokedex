@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Col, Spin } from "antd";
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import Searcher from './Searcher'
 import PokemonList from './PokemonList';
 import { getPokemon } from '../api';
@@ -13,8 +13,8 @@ import "../styles/App.scss"
 
 
 const App = () => {
-  const pokemon = useSelector((state) => state.get('pokemon')).toJS();
-  const loading = useSelector((state) => state.get('loading'));
+  const pokemon = useSelector((state) => state.getIn(['data', 'pokemon'], shallowEqual)).toJS();
+  const loading = useSelector((state) => state.getIn(['ui', 'loading']));
   const dispatch = useDispatch();
 
   useEffect( ()=>{
